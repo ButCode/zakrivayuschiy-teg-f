@@ -185,12 +185,13 @@
   transition: outline 0.3s ease;
 }
 
-.core {
-  transition: fill 1s ease;
+.like-icon .core {
+  fill: none;
+  transition: fill 0.3ss linear 0.03s;
 }
 
-.main-body {
-  transition: fill 1s ease;
+.like-icon .main-body {
+  transition: fill 0.3s linear;
 }
 
 .sparks {
