@@ -10,7 +10,393 @@
 
 */
 
+/*! ============================ !*/
+/*! === ОБЩИЕ СТИЛИ СТРАНИЦЫ === !*/
+/*! ============================ !*/
 .page {
+  /* размер */
   min-inline-size: 320px;
   min-block-size: 100dvb;
+
+  /* шрифты для всей страницы */
+  font-family: var(--font-main);
+  font-size: var(--font-size-main-text);
+  font-variation-settings: var(--font-weight-regular);
+
+  /* отображение */
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  /* фоновый градиент */
+  background-image: var(--page-background);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/*! ============== !*/
+/*! === ШАПАКА === !*/
+/*! ============== !*/
+.header {
+  /* отображение */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* отступы */
+  margin-top: 6.25rem;
+  margin-bottom: 6.25rem;
+}
+
+/* КОНТЕЙНЕР ЗАГОЛОВКА */
+.header__title-container {
+  /* шрифт */
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+
+  /* отображение */
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  
+  /* отступы */
+  gap: 20px;
+  padding: clamp(7.5rem, 7.324rem + 0.751vw, 8rem) clamp(0.875rem, -1.469rem + 10vw, 7.531rem);
+}
+
+/* ЗАГОЛОВОК */
+.header__title-container__heading {
+  font-size: var(--font-size-accent-heading);
+}
+
+/* ПОД-ЗАГОЛОВОК */
+.header__title-container__sub-heading {
+  font-size: var(--font-size-accent-sub-heading);
+}
+
+/*! ====================== !*/
+/*! === ОСНОВНАЯ ЧАСТЬ === !*/
+/*! ====================== !*/
+.main {
+  /* отображение */
+  display: flex;
+  flex-flow: column;
+  /* отступы между карточками */
+  gap: 50px;
+}
+
+/*! === КАРТОЧКА === !*/
+.card {
+  /* фон и обводка для всех "карточек" и кнопок */
+  border: var(--border);
+  background-color: var(--color-main);
+}
+
+/* ЗАГОЛОВОК КАРТОЧКИ */
+.card__title {  
+  font-weight: var(--font-weight-bold);
+  padding: 0.25rem clamp(0.625rem, 0.317rem + 1.315vw, 1.5rem) 0.25rem 0.625rem;
+}
+
+/*! === КОНТЕЙНЕР КАРТИНКИ === !*/
+.card__picture-container {
+  position: relative;
+}
+
+/* ТЕКСТ ПОВЕРХ КАРТИНКИ */
+.card__picture-container__text {
+  /* шрифт */
+  font-family: var(--font-accent);
+  font-size: var(--font-size-accent-text);
+
+  /* позиционирование */
+  position: absolute;
+  top: 1.563rem;
+  right: clamp(0.813rem, 0.548rem + 1.127vw, 1.563rem);
+  z-index: 2;
+
+  /* цвет и наложение */
+  color: var(--color-accent);
+  mix-blend-mode: hard-light;
+  opacity: 50%;
+}
+
+/* ОБВОДКА ТЕКСТА ПОВЕРХ КАРТИНКИ. ПРОВЕРКА ПОДДЕРЖКИ */
+@supports((text-stroke: 1px var(--color-main)) or (-webkit-text-stroke: 1px var(--color-main))) {
+  .card__picture-container__text-stroke {
+    -webkit-text-stroke: 1px var(--color-main);
+    text-stroke: 1px var(--color-main);
+    text-shadow: none;
+  }
+}
+
+/* ОБВОДКА ТЕКСТА ПОВЕРХ КАРТИНКИ. ФОЛЛБЭК */
+.card__picture-container__text-stroke {
+    text-shadow: -1px 0 var(--color-main), 0 1px var(--color-main), 1px 0 var(--color-main), 0 -1px var(--color-main);
+    opacity: 50%;
+}
+
+/* КАРТИНКА В КАРТОЧКЕ */
+.card__picture {
+  /* размер */
+  inline-size: clamp(23.188rem, 16.035rem + 30.516vw, 43.5rem);
+  object-fit: contain;
+}
+
+/*! === ОПИСАНИЕ КАРТОЧКИ === !*/
+.card__description {
+  /* отображение */
+  display: flex;
+  flex-flow: column;
+
+  /* отсьупы */
+  padding: 25px;
+  gap: 27px;
+}
+
+/* ОПИСАНИЯ КАРТОЧКИ. ТЕКСТ */
+.card__text {
+  /* высота строки */
+  line-height: 21px;
+}
+
+/*! === КОНТЕЙНЕР С КНОПКАМИ ИКОНКИ И ЛАЙКА === !*/
+.card__button-container {
+  /* отображенение */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* отступы */
+  padding: 0 25px 25px clamp(10.688rem, 3.535rem + 30.516vw, 31rem);
+}
+
+/*! === КНОПКА ИКОНКИ СЕРДЦА === !*/
+.card__icon-button {
+  /* стили */
+  background-color: var(--color-main);
+  border: none;
+
+  /* отступы */
+  margin: 0;
+
+  /* детали анимации. используется при focus-visible */
+  transition: outline 0.3s ease;
+}
+
+.core {
+  transition: fill 1s ease;
+}
+
+.main-body {
+  transition: fill 1s ease;
+}
+
+.sparks {
+  opacity: 0%;
+}
+
+/*! === СОСТОЯНИЯ ИКОНКИ СЕРДЦА === !*/
+
+/* СЕРДЦЕ. FOCUS */
+.card__icon-button:focus {
+  outline: none; /* сбрасываем все анимации */
+}
+
+/* СЕРДЦЕ. FOCUS-VISIBLE */
+.card__icon-button:focus-visible {
+  /* обводка */
+  outline: 2px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+/* СЕРДЦЕ (ЦЕЛИКОМ). HOVER  */
+.card__icon-button:hover {
+  cursor: pointer;
+}
+
+/* СЕРДЦЕ .CORE HOVER*/
+.card__icon-button:hover .core {
+  fill: var(--color-accent);
+  transition-delay: 0s;
+}
+
+/* СЕРДЦЕ .MAIN-BODY HOVER */
+.card__icon-button:hover .main-body {
+  fill: var(--color-accent);
+  transition-delay: 0.05s;
+}
+
+/*! === КНОПКА LIKE === !*/
+.card__like-button {
+  /* размер */
+  inline-size: 130px;
+  block-size: 38px;
+}
+
+/*! === ОБЩИЙ СТИЛЬ КНОПОК === !*/
+
+.button {
+  /* фон и обводка кнопок */
+  background-color: var(--color-main);
+  border: var(--border);
+
+  /* позиционирование */
+  position: relative;
+
+  /* детали анимацияи. используются при focus-visible */
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+/* СТИЛЬ ТЕКСТА КНОПКИ */
+.button__text {
+  /* шрифт и размер */
+  font-family: var(--font-accent);
+  font-size: var(--font-size-accent-text);
+
+  /* позициониование */
+  position: relative;
+  z-index: 3;
+
+  /* цвет и наложение */
+  color: var(--color-main);
+  mix-blend-mode: difference;
+}
+
+/* ПСЕВДОЭЛЕМЕНТ КНОПКИ */
+.button::after {
+  /* состав */
+  content: "";
+  background-color: var(--color-accent);
+
+  /* размер */
+  width: 100%;
+  height: 100%;
+
+  /* позиционирование */
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 2;
+
+  /* детали анимации. используются при hover */
+  transform: translateX(-100%); /* находится слево от элемента, за его пределами */ 
+  transition: transform 0.5s ease-in-out;
+}
+
+/* КНОПКА. HOVER */
+.button:hover::after {
+  transform: translateX(0%); /* выезжает слева направо, из-за пределеа эдемента */
+}
+
+/* КНОПКА. FOCUS */
+.button:focus {
+  outline: none; /* обнуление обводки */
+}
+
+/* КНОПКА. FOCUS-VISIBLE */
+.button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 var(--color-accent);
+}
+
+/*! ===================== !*/
+/*! ======= ПОДВАЛ ====== !*/
+/*! ===================== !*/
+
+.footer {
+  /* отображение */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* отступы */
+  margin-top: 3.125rem;
+  margin-bottom: 6.25rem;
+}
+
+/* КНОПКА СОХРАНИТЬ НА ПАМЯТЬ */
+.footer__save-button {
+  /* выравнивание и отступы */
+  align-items: center;
+  gap: 8px;
+  padding: 15px 20px;
+}
+
+/*! ============================= !*/
+/*! ======= МОДАЛЬНОЕ ОКНО ====== !*/
+/*! ============================= !*/
+.window {
+  padding: 1.875rem clamp(2.625rem, 2.889rem + -1.127vw, 1.875rem);
+  background-color: var(--color-main);
+  border: 2px #000 solid;
+  inline-size: clamp(21.313rem, 21.048rem + 1.127vw, 22.063rem);
+  block-size: 11.938rem;
+  overflow: hidden;
+}
+
+.window__container {
+  align-items: center;
+  min-width: 16.063rem;
+  gap: 20px;
+}
+
+.window__save-icon {
+  flex-shrink: 0;
+}
+
+.window-text {
+  font-family: var(--font-accent);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  line-height: 150%;
+}
+
+.window__button {
+  inline-size: clamp(16.063rem, 15.27rem + 3.38vw, 18.313rem);
+  block-size: 2.375rem;
+  margin-top: 30px;
+}
+
+.window:open .window, .window__container {
+  display: flex;
+}
+
+.window::backdrop {
+  background-color: var(--color-accent);
+  opacity: 75%;
+}
+
+/*! ============================ !*/
+/*! ======== АДАПТИВНОСТЬ ======= !*/
+/*! ============================ !*/
+
+/* МОБИЛЬНЫЕ */
+@media (max-width: 375px) {
+  .header, .main {
+    inline-size: 100vw;
+  }
+
+  .footer__save-button {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+/* ДЕСКТОПЫ */
+@media (min-width: 376px) {
+  .header, .main {
+    inline-size: clamp(23.438rem, 16.285rem + 30.516vw, 43.75rem);
+  }
+
+  .footer__save-button {
+    display: flex;
+    flex-flow: row;
+  }
 }
