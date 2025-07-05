@@ -99,19 +99,24 @@
   opacity: 50%;
 }
 
+/* ОБВОДКА ТЕКСТА ПОВЕРХ КАРТИНКИ. ФОЛЛБЭК */
+.card__picture-container__text-stroke {
+    text-shadow:
+      -1px 0 var(--color-main),
+      0 1px var(--color-main),
+      1px 0 var(--color-main),
+      0 -1px var(--color-main);
+    opacity: 50%;
+}
+
 /* ОБВОДКА ТЕКСТА ПОВЕРХ КАРТИНКИ. ПРОВЕРКА ПОДДЕРЖКИ */
-@supports((text-stroke: 1px var(--color-main)) or (-webkit-text-stroke: 1px var(--color-main))) {
+@supports(-webkit-text-stroke: 1px var(--color-main)) or (text-stroke: 1px var(--color-main)) {
   .card__picture-container__text-stroke {
     -webkit-text-stroke: 1px var(--color-main);
     text-stroke: 1px var(--color-main);
     text-shadow: none;
-  }
-}
-
-/* ОБВОДКА ТЕКСТА ПОВЕРХ КАРТИНКИ. ФОЛЛБЭК */
-.card__picture-container__text-stroke {
-    text-shadow: -1px 0 var(--color-main), 0 1px var(--color-main), 1px 0 var(--color-main), 0 -1px var(--color-main);
     opacity: 50%;
+  }
 }
 
 /* КАРТИНКА В КАРТОЧКЕ */
@@ -392,7 +397,7 @@
   margin-top: 30px;
 }
 
-.window:open .window, .window__container {
+.window[open] .window, .window__container {
   display: flex;
 }
 
