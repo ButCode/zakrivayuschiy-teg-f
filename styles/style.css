@@ -78,6 +78,7 @@
 /* ЗАГОЛОВОК КАРТОЧКИ */
 .card__title {
   font-weight: var(--font-weight-bold);
+  font-variation-settings: var(--font-weight-bold);
   padding: 0.25rem clamp(0.625rem, 0.317rem + 1.315vw, 1.5rem) 0.25rem 0.625rem;
 }
 
