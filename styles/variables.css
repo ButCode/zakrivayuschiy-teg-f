@@ -4,11 +4,8 @@
     --font-accent: 'PressStart2P', monospace;
 
     /* вес вариативного шрифта */
-    --font-weight-regular: 400;
-    --font-weight-bold: 700;
-
-     --font-variation-regular: 'wght' 400;
-      --font-variation-bold: 'wght' 700;
+    --font-weight-regular: 'wght' 400;
+    --font-weight-bold: 'wght' 700;
 
     /* размер шрифтов */
     --font-size-main-text: 1.125rem;
