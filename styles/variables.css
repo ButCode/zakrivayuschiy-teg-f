@@ -7,6 +7,9 @@
     --font-weight-regular: 400;
     --font-weight-bold: 700;
 
+     --font-variation-regular: 'wght' 400;
+      --font-variation-bold: 'wght' 700;
+
     /* размер шрифтов */
     --font-size-main-text: 1.125rem;
     --font-size-accent-text: 0.875rem;
