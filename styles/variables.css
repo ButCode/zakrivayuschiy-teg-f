@@ -1,7 +1,7 @@
 :root {
     /* шрифты */
     --font-main: 'Inter', sans-serif;
-    --font-accent: 'PressStart2P', monospace;
+    --font-accent: 'PressStart2P', fantasy;
 
     /* вес вариативного шрифта */
     --font-weight-regular: 'wght' 400;
